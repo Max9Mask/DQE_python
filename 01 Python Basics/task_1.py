@@ -2,7 +2,7 @@ import random
 
 
 # generate list of 100 random numbers using module "random"
-random_list = random.sample(range(0, 1001), 10)
+random_list = random.sample(range(0, 1001), 100)
 
 print(f"Generated list: {random_list}")
 
