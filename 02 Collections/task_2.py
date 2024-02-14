@@ -63,6 +63,7 @@ for key, value in common_dict.items():
                 idx_max_value = i + 1
                 # add MAX values in the result dict with suffix "_index"
                 result_dict[f"{key}_{str(idx_max_value)}"] = max_value
+                break
 
     # for cases when a key has only 1 value
     else:
