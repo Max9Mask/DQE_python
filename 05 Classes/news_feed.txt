@@ -1,0 +1,16 @@
+***** News *****
+my test news
+Katowice, 2024-02-26 20:26:08
+
+***** News *****
+my second test news
+Warszawa, 2024-02-26 20:26:30
+
+***** Ads *****
+my test ad
+Actual until: 2024-03-25, 27 days left
+
+***** Forecast *****
+Sunny day, +15 C
+2024-02-27
+
