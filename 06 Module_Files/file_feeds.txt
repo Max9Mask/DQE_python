@@ -1,0 +1,19 @@
+***** news *****
+file test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** news *****
+file test news. Real news today. One more sentence
+Kato, 2024-02-28 21:09:03
+
+***** news *****
+file test news text
+Kato, 2024-02-28 21:09:03
+
+***** ads *****
+file test ad text. I'd like to sell a bicycle.
+Kato until: 2024-03-26, 15 days left
+
+***** forecast *****
+Sunny day, rain in the evening. Good weather for walking around
+2024-03-05

@@ -1,0 +1,31 @@
+***** news *****
+My news. Best news
+Kato, 2024-03-03 19:09:36
+
+***** ads *****
+My private ad. I sell a car
+Actual until: 2024-04-25, 52 days left
+
+***** forecast *****
+Sunny day with light rain
+2024-03-06
+
+***** news *****
+File test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** news *****
+File test news. Real news today. One more sentence
+Kato, 2024-02-28 21:09:03
+
+***** news *****
+File test news text
+Kato, 2024-02-28 21:09:03
+
+***** ads *****
+File test ad text. I'd like to sell a bicycle.
+Kato until: 2024-03-26, 15 days left
+
+***** forecast *****
+Sunny day, rain in the evening. Good weather for walking around
+2024-03-05
