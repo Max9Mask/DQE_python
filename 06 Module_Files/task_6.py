@@ -13,7 +13,7 @@ class Writer:
         # write_to_file method writes the given record to the file
         # record: the text to write to the file
         with open(self.filename, 'a') as f:
-            f.write(f'{record}\n')
+            f.write(f'{record}')
 
 
 # News class inherits from Writer class and is used to publish news
@@ -30,7 +30,7 @@ class News(Writer):
         # publish_feed method constructs the news feed and writes it using the superclass write_to_file method
         feed = ("***** news *****\n"
                 f"{self.text}\n"
-                f"{self.city}, {self.date_stamp}\n"
+                f"{self.city}, {self.date_stamp}\n\n"
                 )
         # writes feed to the file
         self.write_to_file(capitalize_sentences(feed))
@@ -75,7 +75,7 @@ class Ads(Writer):
         # publish_feed method constructs the ad feed and writes it using the superclass write_to_file method
         feed = ("***** ads *****\n"
                 f"{self.text}\n"
-                f"Actual until: {self.exp_date}, {day_days(self.calc_period())}\n"
+                f"Actual until: {self.exp_date}, {day_days(self.calc_period())}\n\n"
                 )
         # writes feed to the file
         self.write_to_file(capitalize_sentences(feed))
@@ -103,20 +103,62 @@ class Forecast(Writer):
         # publish_feed method constructs the forecast feed and writes it using the superclass write_to_file method
         feed = ("***** forecast *****\n"
                 f"{self.text}\n"
-                f"{self.forecast_date}\n"
+                f"{self.forecast_date}\n\n"
                 )
         # writes feed to the file
         self.write_to_file(capitalize_sentences(feed))
 
 
-def count_characters(file_path):
-    # function to count the number of characters in text
-    # parameters: file_path - the file path
-    # returns number of characters or raises the os.error exception when an inaccessible or invalid file path is specified
+def count_characters(file_path: str):
+    # function to count the number of characters in a text
+    # parameters: file_path
+    # returns number of characters w/o new line character ("\n")
+    # or raises the os.error exception when an inaccessible or invalid file path is specified
     try:
         with open(file_path, 'r') as file:
+            # read provided file
             content = file.read()
+            # remove all new line characters for calculating letters only (will be used in checks later)
+            content = content.replace("\n", "")
         return len(content)
+    except OSError:
+        print(f"The file '{file_path}' does not exist or could not be opened")
+
+
+def cut_initial_feed(file_path, idx=None):
+    # function cuts provided in file feeds if not all files have to be published
+    # parameters: file path
+    #             idx - index indicates the desired number of feeds that have to be published
+    try:
+        with open(file_path, 'r') as file:
+            feeds_data = file.read()
+            # capitalize feeds from file
+            capitalized_feeds = capitalize_sentences(feeds_data)
+            # split file feeds to select desired numbers of feeds to be published
+            split_feeds = capitalized_feeds.split('\n\n')
+
+            if idx is None:
+                copied_feeds = split_feeds
+            elif idx > 0:
+                # for cases when only first feeds need to be published
+                copied_feeds = split_feeds[:idx]
+            elif idx < 0:
+                # for cases when only last feeds need to be published
+                copied_feeds = split_feeds[idx:]
+            elif idx == 0:
+                print("No feeds selected because of the input number of feeds = 0")
+                return None
+            else:
+                print(f"Invalid number of feeds entered")
+                return None
+
+            # join all desired feeds in one text for further processing
+            cut_feeds = '\n\n'.join(copied_feeds)
+
+            return cut_feeds
+    # errors handling
+    except TypeError:
+        print('Invalid value for number of feeds, please enter an integer')
     except OSError:
         print(f"The file '{file_path}' does not exist or could not be opened")
 
@@ -126,45 +168,44 @@ class CopyFile:
     def __init__(self):
         self.content = None
         self.current_dir = os.getcwd()
-        self.adding_file_path = input(f"uploaded file: enter full path or filename for default directory '{self.current_dir}': ")
+        self.adding_file_path = input(f"Uploaded file: enter full path or filename for default directory '{self.current_dir}': ")
+        self.number_of_feeds = int(input(f"Enter number of feeds for coping to the output file. If you need last feeds, enter negative index, e.g. -1, -2: "))
         self.target_file_path = "output_feed.txt"  # default output file
         # uncomment next line of code if you would like to provide target file manually
         # self.target_file_path = input(f"Enter full target file path or file name for default directory '{self.current_dir}': ")
 
     def copy_file(self):
-        # Function to copy a file to a new file
+        # function to copy a file to a new file
         try:
-            # count number of characters in the uploaded file
-            count_new_data = count_characters(self.adding_file_path)
+            # prepare specified number of feed from file
+            self.content = cut_initial_feed(self.adding_file_path, self.number_of_feeds)
+            # count the number of characters (new line characters are not considered)
+            count_new_data = len(self.content.replace("\n", ""))
 
-            # check if uploaded file have any data.txt
+            # check if uploaded file have any data
             if count_new_data == 0:
                 print(f"Copying file {self.adding_file_path} is empty")
                 return
 
-            # read uploaded file
-            with open(self.adding_file_path, 'r') as file:
-                # Read each line and capitalize sentences using 'string_operations' module
-                self.content = [capitalize_sentences(line) for line in file.readlines()]
-
-            # append data.txt to target file
+            # append data to target file
             with open(self.target_file_path, 'a') as file:
                 # count number of characters in the target file before uploading
                 count_before_adding = count_characters(self.target_file_path)
-                # write data.txt to the target file
-                file.writelines(self.content)
+                # write data to the target file
+                file.writelines(f"{self.content}\n\n")
 
             # count number of characters in the target file after uploading
             count_after_adding = count_characters(self.target_file_path)
+
         # raises the os.error exception when an inaccessible or invalid file path is specified
         except OSError:
             print(f"An error occurred while copying the file {self.adding_file_path}")
             return
 
-        # check if all data.txt was uploaded to the target file
+        # check if all data was uploaded to the target file
         if count_after_adding - count_before_adding == count_new_data:
-            print("All data.txt was successfully uploaded")
-            # remove source file with uploaded data.txt
+            print("All data was successfully uploaded")
+            # remove source file with uploaded data
             os.remove(self.adding_file_path)
         else:
             print("There are discrepancies after uploading new data.txt")
