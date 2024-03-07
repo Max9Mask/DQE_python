@@ -1,0 +1,40 @@
+***** news *****
+1 file test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** news *****
+1 file test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** news *****
+1 file test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** news *****
+2 file test news. Real news today. One more sentence
+Kato, 2024-02-28 21:09:03
+
+***** news *****
+Sdfsdgg
+Sgdfgdf, 2024-03-05 20:52:30
+
+***** news *****
+1 file test news. Real news today
+Kato, 2024-02-28 21:08:45
+
+***** forecast *****
+5 sunny day, rain in the evening. Good weather for walking around
+2024-03-05
+
+***** news *****
+The latest news
+Warszawa, 2024-03-06 20:28:39
+
+***** ads *****
+My latest ad. I sell a car
+Actual until: 2024-05-06, 60 days left
+
+***** news *****
+My thursday news
+Krakow, 2024-03-07 21:01:32
+
