@@ -1,0 +1,16 @@
+***** news *****
+My json feed text news
+Kato, 2024-03-16 11:33:36
+
+***** ads *****
+My json ad test
+Actual until: 2024-03-30, 13 days left
+
+***** forecast *****
+My json forecast text
+2024-03-20
+
+***** news *****
+My test news
+Wawa, 2024-03-16 11:34:01
+
