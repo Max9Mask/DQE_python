@@ -1,0 +1,17 @@
+[
+  {
+    "feed_type": "News",
+    "text":  "my JSON feed text news",
+    "city": "Kato"
+  },
+  {
+    "feed_type": "Ads",
+    "text":  "my JSON ad test",
+    "exp_date": "2024-03-30"
+  },
+  {
+    "feed_type": "Forecast",
+    "text":  "my JSON forecast text",
+    "fr_date": "2024-03-20"
+  }
+]
