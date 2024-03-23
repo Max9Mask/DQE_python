@@ -1,0 +1,17 @@
+<feeds_upload>
+    <feed>
+        <feed_type>News</feed_type>
+        <feed_text>my XML feed text news</feed_text>
+        <city>Kato</city>
+    </feed>
+    <feed>
+        <feed_type>Ads</feed_type>
+        <feed_text>my XML ad tests</feed_text>
+        <exp_date>2024-03-30</exp_date>
+    </feed>
+    <feed>
+        <feed_type>Forecast</feed_type>
+        <feed_text>my XML forecast text</feed_text>
+        <fr_date>2024-03-25</fr_date>
+    </feed>
+</feeds_upload>
